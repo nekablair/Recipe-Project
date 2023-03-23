@@ -1,6 +1,10 @@
 let result = document.getElementById("result");
 let searchBtn = document.getElementById("search-btn");
 
+//hiding the result div due to it changing the search box size initially
+result.style.display = "none";
+
+
 searchBtn.addEventListener("click", () => {
     let userInp = document.getElementById("user-inp").value;
     if (userInp.length == 0) {
@@ -30,6 +34,21 @@ searchBtn.addEventListener("click", () => {
                 }
             }
             console.log(ingredients);
+            document.querySelector("img").src = myMeal.strMealThumb;
+            document.querySelector("h1").innerHTML = myMeal.strMeal;
+            document.querySelector("p").innerHTML = myMeal.strArea;
+            let list = document.getElementById("ingredientsList");
+            ingredients.forEach((item) => {
+                let li = document.createElement("li");
+                li.innerText = item;
+                list.appendChild(li);
+            })
+
+            //displaying the result div after data retrieved
+            result.style.display = "block";
+
+        
+            
         })
     }
 })
